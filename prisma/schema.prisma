@@ -1,0 +1,32 @@
+generator client {
+  provider        = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model MstFeatureType {
+  id Int @default(autoincrement()) @id
+  name String
+  features Feature[]
+}
+
+model Feature {
+  id Int @default(autoincrement()) @id
+  name String
+  featureType MstFeatureType @relation(fields: [featureTypeId], references: [id])
+  featureTypeId Int
+  coordinates Coordinate[]
+}
+
+model Coordinate {
+  id Int @default(autoincrement()) @id
+  lon Decimal
+  lat Decimal
+  feature Feature @relation(fields: [featureId], references: [id])
+  featureId Int
+}
