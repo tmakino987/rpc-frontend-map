@@ -1,9 +1,9 @@
-import { useCallback, useState } from "react";
-import React from "react";
+import { useCallback, useState } from 'react';
+import React from 'react';
 
-import { LatLng } from "leaflet";
-import { Marker, Popup } from "react-leaflet";
-import { useMapEvents } from "react-leaflet";
+import { LatLng } from 'leaflet';
+import { Marker, Popup } from 'react-leaflet';
+import { useMapEvents } from 'react-leaflet';
 
 export interface IMakerProps {
   positions: LatLng[];
@@ -16,6 +16,7 @@ export const ClickMaker = (props: IMakerProps): JSX.Element => {
     click(e) {
       //クリックされた箇所にマーカーを追加
       props.setPositions([...props.positions, e.latlng]);
+      console.log('aaa');
     },
   });
 
@@ -24,7 +25,7 @@ export const ClickMaker = (props: IMakerProps): JSX.Element => {
     (latlng: LatLng) => {
       props.setPositions(props.positions.filter((x) => !x.equals(latlng)));
     },
-    [props.positions]
+    [props.positions],
   );
 
   return (

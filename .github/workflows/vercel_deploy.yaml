@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'リリース対象のタグ名'
+        description: 'リリースタグ名'
         required: true
 
 jobs:
